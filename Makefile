@@ -8,15 +8,20 @@ web:
 	python3 -m pygbag main.py
 
 web-build:
-	python -m pygbag \
-		--app-name flappybird \
+	python3 -m pygbag \
+		--app_name flappybird \
 		--cdn "https://pygame-web.github.io/archives/0.9/" \
-		--python 3.11 \
 		--template web/index.html \
-		--build main.py
+		--build \
+		--archive \
+		main.py
 
 web-dev:
-	python3 -m pygbag main.py
+	python3 -m pygbag \
+		--app_name flappybird \
+		--cdn "https://pygame-web.github.io/archives/0.9/" \
+		--template web/index.html \
+		main.py
 
 init:
 	@python3 -m pip install -U pip; \
