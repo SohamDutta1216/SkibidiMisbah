@@ -11,12 +11,15 @@ async def main():
         pygame.display.init()
         pygame.font.init()
         
-        # Initialize audio for web
-        pygame.mixer.init()
+        # Initialize audio with lower buffer size for web
         pygame.mixer.pre_init(44100, -16, 2, 512)
+        pygame.mixer.init()
         
-        # Set up web-specific display
-        pygame.display.set_mode((288, 512), pygame.SCALED)
+        # Force SCALED mode for web
+        pygame.display.set_mode((288, 512), pygame.SCALED | pygame.RESIZABLE)
+        
+        # Wait for user interaction before starting audio
+        await asyncio.sleep(0.1)
     
     game = Flappy()
     await game.start()
