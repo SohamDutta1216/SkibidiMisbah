@@ -11,10 +11,15 @@ dependencies = [
 build-path = "build"
 app-name = "flappybird"
 cdn = "https://pygame-web.github.io/archives/0.9/"
+python_version = "3.11"
 include = [
     "assets/",
     "src/",
-    "main.py"
+    "main.py",
+    "web/pythonrc.py"
+]
+extra_resources = [
+    "web/pythonrc.py"
 ]
 ume_block = 1
 can_close = 0
