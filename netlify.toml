@@ -6,10 +6,11 @@
       --cdn "https://pygame-web.github.io/archives/0.9/" \
       --template web/index.html \
       --build \
-      --archive repo \
+      --archive \
       main.py
   """
   publish = "build/web"
 
 [build.environment]
   PYTHONPATH = "."
+  PYTHON_VERSION = "3.11"
