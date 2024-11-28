@@ -1,0 +1,3 @@
+[build]
+  command = "pip install pygbag && python -m pygbag --build main.py"
+  publish = "build/web"

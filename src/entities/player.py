@@ -24,7 +24,7 @@ class Player(Entity):
         self.min_y = -2 * self.h
         self.max_y = config.window.viewport_height - self.h * 0.75
         self.img_idx = 0
-        self.img_gen = cycle([0, 1, 2, 1])
+        self.img_gen = cycle([0, 1, 2])
         self.frame = 0
         self.crashed = False
         self.crash_entity = None

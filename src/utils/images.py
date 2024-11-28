@@ -28,9 +28,10 @@ class Images:
             "assets/sprites/gameover.png"
         ).convert_alpha()
         # welcome_message sprite for welcome screen
-        self.welcome_message = pygame.image.load(
-            "assets/sprites/message.png"
-        ).convert_alpha()
+        self.welcome_message = pygame.transform.scale(
+            pygame.image.load("assets/sprites/message.png").convert_alpha(),
+            (200, 100),
+        )
         # base (ground) sprite
         self.base = pygame.image.load("assets/sprites/base.png").convert_alpha()
         self.randomize()
@@ -44,11 +45,23 @@ class Images:
         rand_pipe = random.randint(0, len(PIPES) - 1)
 
         self.background = pygame.image.load(BACKGROUNDS[rand_bg]).convert()
-        self.player = (
-            pygame.image.load(PLAYERS[rand_player][0]).convert_alpha(),
-            pygame.image.load(PLAYERS[rand_player][1]).convert_alpha(),
-            pygame.image.load(PLAYERS[rand_player][2]).convert_alpha(),
-        )
+        # Scale missy sprite to be smaller if selected
+        if rand_player == 2:  # Yellow bird (missy) index
+            original = pygame.image.load(
+                PLAYERS[rand_player][0]
+            ).convert_alpha()
+            self.player = tuple(
+                pygame.transform.scale(
+                    pygame.image.load(PLAYERS[rand_player][i]).convert_alpha(),
+                    (original.get_width() // 11, original.get_height() // 11),
+                )
+                for i in range(3)
+            )
+        else:
+            self.player = tuple(
+                pygame.image.load(PLAYERS[rand_player][i]).convert_alpha()
+                for i in range(3)
+            )
         self.pipe = (
             pygame.transform.flip(
                 pygame.image.load(PIPES[rand_pipe]).convert_alpha(),

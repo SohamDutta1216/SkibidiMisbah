@@ -14,7 +14,7 @@ class Sounds:
         if "win" in sys.platform:
             ext = "wav"
         else:
-            ext = "ogg"
+            ext = "wav"
 
         self.die = pygame.mixer.Sound(f"assets/audio/die.{ext}")
         self.hit = pygame.mixer.Sound(f"assets/audio/hit.{ext}")

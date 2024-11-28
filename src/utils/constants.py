@@ -14,9 +14,9 @@ PLAYERS = (
     ),
     # yellow bird
     (
-        "assets/sprites/yellowbird-upflap.png",
-        "assets/sprites/yellowbird-midflap.png",
-        "assets/sprites/yellowbird-downflap.png",
+        "assets/sprites/missy-up.png",
+        "assets/sprites/missy-mid.png",
+        "assets/sprites/missy-down.png",
     ),
 )
 
@@ -28,6 +28,6 @@ BACKGROUNDS = (
 
 # list of pipes
 PIPES = (
-    "assets/sprites/pipe-green.png",
+    "assets/sprites/kebab.png",
     "assets/sprites/pipe-red.png",
 )
