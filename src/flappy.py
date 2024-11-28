@@ -1,4 +1,5 @@
 import asyncio
+import platform
 import sys
 
 import pygame
@@ -15,6 +16,12 @@ class Flappy:
         window = Window(288, 512)
         screen = pygame.display.set_mode((window.width, window.height))
         images = Images()
+
+        # Enable touch events for web platform
+        if platform.system() == "Emscripten":
+            pygame.event.set_allowed(
+                [pygame.FINGERDOWN, pygame.MOUSEBUTTONDOWN]
+            )
 
         self.config = GameConfig(
             screen=screen,
@@ -97,6 +104,18 @@ class Flappy:
             sys.exit()
 
     def is_tap_event(self, event):
+        # Handle web platform specifically
+        if platform.system() == "Emscripten":
+            return (
+                event.type == pygame.FINGERDOWN
+                or event.type == pygame.MOUSEBUTTONDOWN
+                or (
+                    event.type == KEYDOWN
+                    and (event.key == K_SPACE or event.key == K_UP)
+                )
+            )
+
+        # Desktop platform handling
         m_left, _, _ = pygame.mouse.get_pressed()
         space_or_up = event.type == KEYDOWN and (
             event.key == K_SPACE or event.key == K_UP
