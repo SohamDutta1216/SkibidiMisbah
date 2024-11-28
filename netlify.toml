@@ -1,3 +1,6 @@
 [build]
-  command = "pip install pygbag && python -m pygbag --build main.py"
+  command = """
+    pip install pygbag &&
+    python -m pygbag --bind 0.0.0.0 --cdn "https://pygame-web.github.io/archives/0.9/" --build main.py
+  """
   publish = "build/web"

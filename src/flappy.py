@@ -11,26 +11,36 @@ from .utils import GameConfig, Images, Sounds, Window
 
 class Flappy:
     def __init__(self):
-        pygame.init()
-        pygame.display.set_caption("Skibidi Misbah")
-        window = Window(288, 512)
-        screen = pygame.display.set_mode((window.width, window.height))
-        images = Images()
-
-        # Enable touch events for web platform
-        if platform.system() == "Emscripten":
-            pygame.event.set_allowed(
-                [pygame.FINGERDOWN, pygame.MOUSEBUTTONDOWN]
+        try:
+            pygame.init()
+            pygame.display.set_caption("Skibidi Misbah")
+            window = Window(288, 512)
+            
+            # Web-specific display setup
+            if platform.system() == "Emscripten":
+                screen = pygame.display.set_mode((window.width, window.height), pygame.SCALED)
+            else:
+                screen = pygame.display.set_mode((window.width, window.height))
+            
+            images = Images()
+            
+            # Initialize sound with error handling
+            try:
+                sounds = Sounds()
+            except:
+                sounds = None  # Fallback for web if audio fails
+            
+            self.config = GameConfig(
+                screen=screen,
+                clock=pygame.time.Clock(),
+                fps=30,
+                window=window,
+                images=images,
+                sounds=sounds,
             )
-
-        self.config = GameConfig(
-            screen=screen,
-            clock=pygame.time.Clock(),
-            fps=35,
-            window=window,
-            images=images,
-            sounds=Sounds(),
-        )
+        except Exception as e:
+            print(f"Initialization error: {e}")
+            raise
 
     async def start(self):
         while True:

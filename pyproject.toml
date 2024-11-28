@@ -9,11 +9,16 @@ dependencies = [
 
 [tool.pygbag]
 build-path = "build"
+app-name = "flappybird"
+cdn = "https://pygame-web.github.io/archives/0.9/"
 include = [
     "assets/",
     "src/",
     "main.py"
 ]
+ume_block = 1
+can_close = 0
+archive = "repo"
 
 [project.optional-dependencies]
 dev = [
